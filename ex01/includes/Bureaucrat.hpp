@@ -4,6 +4,8 @@
 #include <ostream>
 #include <string>
 
+class Form;
+
 class Bureaucrat
 {
 public:
@@ -34,6 +36,7 @@ public:
 	int getGrade() const;
 	void increment();
 	void decrement();
+	void signForm(Form &formRef);
 
 private:
 	const std::string name;

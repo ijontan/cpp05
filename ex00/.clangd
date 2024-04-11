@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-Wall, -Werror, -Wextra, -std=c++98, -I/home/ijon/src/cpp05/ex00/includes]
+  Add: [-Wall, -Werror, -Wextra, -std=c++98, -I/home/itan/src/cpp05/ex00/includes]

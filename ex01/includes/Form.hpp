@@ -34,7 +34,6 @@ public:
 	Form &operator=(Form &other);
 	~Form();
 	void beSigned(Bureaucrat &signer);
-	void signForm();
 	std::string getName();
 	int getGradeToSign();
 	bool getIsSigned();

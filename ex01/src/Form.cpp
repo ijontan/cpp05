@@ -38,16 +38,7 @@ void Form::beSigned(Bureaucrat &signer)
 	lastSigned = &signer;
 	if (signer.getGrade() >= gradeToSign)
 		isSigned = true;
-}
-
-void Form::signForm()
-{
-	if (isSigned)
-		std::cout << lastSigned->getName() << " signed " << name << std::endl;
-	else
-		std::cout << lastSigned->getName() << " couldn't sign " << name
-				  << " because bureaucrat grade too "
-				  << (gradeToSign > lastSigned->getGrade() ? "low" : "high");
+	signer.signForm(*this);
 }
 
 std::string Form::getName()
