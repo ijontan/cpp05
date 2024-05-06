@@ -38,18 +38,8 @@ AForm &AForm::operator=(const AForm &other)
 void AForm::beSigned(Bureaucrat &signer)
 {
 	_lastSigned = &signer;
-	if (signer.getGrade() >= _signGrade)
+	if (signer.getGrade() <= _signGrade)
 		_signed = true;
-}
-
-void AForm::signForm()
-{
-	if (_signed)
-		std::cout << _lastSigned->getName() << " signed " << _name << std::endl;
-	else
-		std::cout << _lastSigned->getName() << " couldn't sign " << _name
-				  << " because bureaucrat grade too "
-				  << (_signGrade > _lastSigned->getGrade() ? "low" : "high");
 }
 
 std::string AForm::getName() const
@@ -65,9 +55,16 @@ bool AForm::getIsSigned() const
 	return _signed;
 }
 
-bool AForm::getExecGrade() const
+int AForm::getExecGrade() const
 {
 	return _execGrade;
+}
+
+bool AForm::canExec(Bureaucrat const &executer) const
+{
+	if (!_signed || executer.getGrade() > _execGrade)
+		return false;
+	return true;
 }
 
 std::ostream &operator<<(std::ostream &os, AForm &obj)

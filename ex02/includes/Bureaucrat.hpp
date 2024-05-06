@@ -35,13 +35,15 @@ public:
 	~Bureaucrat();
 	std::string getName() const;
 	int getGrade() const;
+	void setGrade(int grade);
 	void increment();
 	void decrement();
+	void signForm(AForm &form);
 	void executeForm(AForm const &form);
 
 private:
-	const std::string name;
-	int grade;
+	const std::string _name;
+	int _grade;
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &obj);

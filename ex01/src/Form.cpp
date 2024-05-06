@@ -36,7 +36,7 @@ Form &Form::operator=(Form &other)
 void Form::beSigned(Bureaucrat &signer)
 {
 	lastSigned = &signer;
-	if (signer.getGrade() >= gradeToSign)
+	if (signer.getGrade() <= gradeToSign)
 		isSigned = true;
 	signer.signForm(*this);
 }

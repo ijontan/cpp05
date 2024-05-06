@@ -35,12 +35,12 @@ public:
 	AForm &operator=(const AForm &other);
 	virtual ~AForm();
 	void beSigned(Bureaucrat &signer);
-	void signForm();
 	std::string getName() const;
 	int getGradeToSign() const;
 	bool getIsSigned() const;
-	bool getExecGrade() const;
-	virtual void execute(Bureaucrat const & executor) const = 0;
+	int getExecGrade() const;
+	bool canExec(Bureaucrat const &executer) const;
+	virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &os, AForm &obj);

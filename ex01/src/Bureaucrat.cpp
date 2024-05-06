@@ -50,14 +50,16 @@ void Bureaucrat::decrement()
 	grade++;
 }
 
-void Bureaucrat::signForm(Form &formRef)
+void Bureaucrat::signForm(Form &form)
 {
-	if (formRef.getIsSigned())
-		std::cout << name << " signed " << formRef.getName() << std::endl;
+	form.beSigned(*this);
+	if (form.getIsSigned())
+		std::cout << name << " signed " << form.getName() << std::endl;
 	else
-		std::cout << name << " couldn't sign " << formRef.getName()
+		std::cout << name << " couldn't sign " << form.getName()
 				  << " because bureaucrat grade too "
-				  << (formRef.getGradeToSign() > grade ? "low" : "high");
+				  << (form.getGradeToSign() > grade ? "low" : "high")
+				  << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &obj)
@@ -67,16 +69,16 @@ std::ostream &operator<<(std::ostream &os, Bureaucrat &obj)
 	return os;
 }
 
-std::ostream &operator<<(std::ostream &os, Bureaucrat::GradeTooLowException &obj)
+std::ostream &operator<<(std::ostream &os,
+						 Bureaucrat::GradeTooLowException &obj)
 {
-	os << obj.what()
-	   << std::endl;
+	os << obj.what() << std::endl;
 	return os;
 }
 
-std::ostream &operator<<(std::ostream &os, Bureaucrat::GradeTooHighException &obj)
+std::ostream &operator<<(std::ostream &os,
+						 Bureaucrat::GradeTooHighException &obj)
 {
-	os << obj.what()
-	   << std::endl;
+	os << obj.what() << std::endl;
 	return os;
 }

@@ -1,5 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
+#include <iostream>
 
 /***********************************
  * Constructors
@@ -33,4 +34,7 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
+	if (!canExec(executor))
+		return;
+	std::cout << executor.getName() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
