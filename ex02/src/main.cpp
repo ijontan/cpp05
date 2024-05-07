@@ -54,7 +54,7 @@ int main()
 		bureaucrat.setGrade(25);
 		bureaucrat.signForm(form1);
 	}
-	std::cout << "\n\033[42;1mtest 3:\033[0m exec not high enough" << std::endl;
+	std::cout << "\n\033[42;1mtest 4:\033[0m exec not high enough" << std::endl;
 	{
 		Bureaucrat bureaucrat("fonny");
 		PresidentialPardonForm form1;
@@ -71,7 +71,7 @@ int main()
 		bureaucrat.signForm(form1);
 		bureaucrat.executeForm(form1);
 	}
-	std::cout << "\n\033[42;1mtest 3:\033[0m exec high enough" << std::endl;
+	std::cout << "\n\033[42;1mtest 5:\033[0m exec high enough" << std::endl;
 	{
 		Bureaucrat bureaucrat("fonny");
 		PresidentialPardonForm form1;
