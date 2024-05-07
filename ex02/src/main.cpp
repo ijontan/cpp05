@@ -3,13 +3,18 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include <cstdio>
+#include <fcntl.h>
 #include <fstream>
 #include <iostream>
+#include <ostream>
+#include <streambuf>
+#include <string>
+#include <unistd.h>
 
 int main()
 {
-	std::cout << "\033[42;1mTest 1:\033[0m exec unsigned"
-			  << std::endl;
+	std::cout << "\033[42;1mTest 1:\033[0m exec unsigned" << std::endl;
 	{
 		Bureaucrat bureaucrat("jonny");
 		PresidentialPardonForm form1;
@@ -86,10 +91,39 @@ int main()
 	}
 	std::cout << "\n\033[42;1mtest 3:\033[0m test robo 50%" << std::endl;
 	{
-		std::ofstream file("test.tmp");
-		int defout
+		std::streambuf *bufftmp = std::cout.rdbuf();
+		std::ofstream file("file.tmp");
+		if (file.fail())
+			goto ending;
+		std::cout.rdbuf(file.rdbuf());
 
+		Bureaucrat bureaucrat("nonny");
+		RobotomyRequestForm form;
+		bureaucrat.setGrade(1);
+		bureaucrat.signForm(form);
+		for (int i = 0; i < 10000; i++)
+		{
+			bureaucrat.executeForm(form);
+		}
+		std::cout.rdbuf(bufftmp);
+		file.close();
+
+		std::ifstream file1("file.tmp");
+		std::string line;
+		int number_failed = 0;
+		int total = 0;
+		float percent;
+		while (std::getline(file1, line))
+		{
+			if (line.find("failed") != std::string::npos)
+				number_failed += 1;
+			total += 1;
+		}
+		percent = (float)number_failed / total;
+		std::cout << "percentages: " << percent << std::endl;
+		file1.close();
 	}
+ending:
 
 	return 0;
 }
