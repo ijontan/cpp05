@@ -1,0 +1,6 @@
+Intern
+SpecialForm
+*.tmp
+*.o
+*.out
+*.DSYM
