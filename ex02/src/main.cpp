@@ -17,9 +17,9 @@ int main()
 	std::cout << "\033[42;1mTest 1:\033[0m exec unsigned" << std::endl;
 	{
 		Bureaucrat bureaucrat("jonny");
-		PresidentialPardonForm form1;
-		RobotomyRequestForm form2;
-		ShrubberyCreationForm form3;
+		PresidentialPardonForm form1("ok");
+		RobotomyRequestForm form2("ok");
+		ShrubberyCreationForm form3("ok");
 
 		bureaucrat.setGrade(1);
 		bureaucrat.executeForm(form1);
@@ -29,9 +29,9 @@ int main()
 	std::cout << "\n\033[42;1mtest 2:\033[0m sign not high enough" << std::endl;
 	{
 		Bureaucrat bureaucrat("conny");
-		PresidentialPardonForm form1;
-		RobotomyRequestForm form2;
-		ShrubberyCreationForm form3;
+		PresidentialPardonForm form1("ok");
+		RobotomyRequestForm form2("ok");
+		ShrubberyCreationForm form3("ok");
 
 		bureaucrat.setGrade(146);
 		bureaucrat.signForm(form3);
@@ -43,9 +43,9 @@ int main()
 	std::cout << "\n\033[42;1mtest 3:\033[0m sign high enough" << std::endl;
 	{
 		Bureaucrat bureaucrat("donny");
-		PresidentialPardonForm form1;
-		RobotomyRequestForm form2;
-		ShrubberyCreationForm form3;
+		PresidentialPardonForm form1("ok");
+		RobotomyRequestForm form2("ok");
+		ShrubberyCreationForm form3("ok");
 
 		bureaucrat.setGrade(145);
 		bureaucrat.signForm(form3);
@@ -57,9 +57,9 @@ int main()
 	std::cout << "\n\033[42;1mtest 4:\033[0m exec not high enough" << std::endl;
 	{
 		Bureaucrat bureaucrat("fonny");
-		PresidentialPardonForm form1;
-		RobotomyRequestForm form2;
-		ShrubberyCreationForm form3;
+		PresidentialPardonForm form1("ok");
+		RobotomyRequestForm form2("ok");
+		ShrubberyCreationForm form3("ok");
 
 		bureaucrat.setGrade(145);
 		bureaucrat.signForm(form3);
@@ -74,9 +74,9 @@ int main()
 	std::cout << "\n\033[42;1mtest 5:\033[0m exec high enough" << std::endl;
 	{
 		Bureaucrat bureaucrat("fonny");
-		PresidentialPardonForm form1;
-		RobotomyRequestForm form2;
-		ShrubberyCreationForm form3;
+		PresidentialPardonForm form1("ok");
+		RobotomyRequestForm form2("ok");
+		ShrubberyCreationForm form3("ok");
 
 		bureaucrat.setGrade(145);
 		bureaucrat.signForm(form3);
@@ -98,7 +98,7 @@ int main()
 		std::cout.rdbuf(file.rdbuf());
 
 		Bureaucrat bureaucrat("nonny");
-		RobotomyRequestForm form;
+		RobotomyRequestForm form("ok");
 		bureaucrat.setGrade(1);
 		bureaucrat.signForm(form);
 		for (int i = 0; i < 10000; i++)

@@ -1,10 +1,11 @@
 #pragma once
 #include <AForm.hpp>
+#include <string>
 
 class PresidentialPardonForm : public AForm
 {
 public:
-	PresidentialPardonForm(void);
+	PresidentialPardonForm(std::string target);
 	~PresidentialPardonForm(void);
 	PresidentialPardonForm(const PresidentialPardonForm &src);
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &rhs);

@@ -4,12 +4,14 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <string>
 
 /***********************************
  * Constructors
  ***********************************/
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Request Form", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target)
+	: AForm("Request Form", 72, 45, target)
 {
 	srand(time(NULL));
 }
@@ -39,7 +41,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	if (!canExec(executor))
 		return;
 	if (rand() > RAND_MAX / 2)
-		std::cout << executor.getName() << " has been robotomized" << std::endl;
+		std::cout << getTarget() << " has been robotomized" << std::endl;
 	else
 		std::cout << "robotomy failed" << std::endl;
 }

@@ -1,13 +1,14 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 #include <iostream>
+#include <string>
 
 /***********************************
  * Constructors
  ***********************************/
 
-PresidentialPardonForm::PresidentialPardonForm(void)
-	: AForm("Pardon Form", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(std::string target)
+	: AForm("Pardon Form", 25, 5, target)
 {
 }
 
@@ -36,5 +37,6 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
 	if (!canExec(executor))
 		return;
-	std::cout << executor.getName() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox"
+			  << std::endl;
 }

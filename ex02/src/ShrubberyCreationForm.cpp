@@ -3,13 +3,14 @@
 #include <fstream>
 #include <iostream>
 #include <ostream>
+#include <string>
 
 /***********************************
  * Constructors
  ***********************************/
 
-ShrubberyCreationForm::ShrubberyCreationForm(void)
-	: AForm("Creation Form", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+	: AForm("Creation Form", 145, 137, target)
 {
 }
 
@@ -38,7 +39,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
 	if (!canExec(executor))
 		return;
-	std::ofstream file((executor.getName() + "_shrubbery").c_str());
+	std::ofstream file((getTarget() + "_shrubbery").c_str());
 	if (file.fail())
 	{
 		std::cerr << "error creating file" << std::endl;
@@ -64,8 +65,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		 << "       .  . ..    Y7'.'     .  .\n"
 		 << "                 :@):.\n"
 		 << "                .:@:'.\n"
-		 << "              .::(@:.      -Sam Blumenstein-"
-		 << std::endl;
+		 << "              .::(@:.      -Sam Blumenstein-" << std::endl;
 	file.close();
 	std::cout << executor.getName() << " planted the shrubbery" << std::endl;
 }

@@ -2,15 +2,17 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 #include <ostream>
+#include <string>
 
 AForm::AForm()
-	: _name("AForm"), _signGrade(150), _execGrade(150), _signed(false)
+	: _name("AForm"), _signGrade(150), _execGrade(150), _signed(false), _target("none")
 {
 }
 
-AForm::AForm(std::string newName, int signGrade, int execGrade)
+AForm::AForm(std::string newName, int signGrade, int execGrade,
+			 std::string target)
 	: _name(newName), _signGrade(signGrade), _execGrade(execGrade),
-	  _signed(false)
+	  _signed(false), _target(target)
 {
 	if (signGrade > 150)
 		throw AForm::GradeTooLowException();
@@ -31,18 +33,20 @@ AForm::~AForm()
 AForm &AForm::operator=(const AForm &other)
 {
 	_signed = other._signed;
-	_lastSigned = other._lastSigned;
 	return *this;
 }
 
 void AForm::beSigned(Bureaucrat &signer)
 {
-	_lastSigned = &signer;
 	if (signer.getGrade() <= _signGrade)
 		_signed = true;
 }
 
 std::string AForm::getName() const
+{
+	return _name;
+}
+std::string AForm::getTarget() const
 {
 	return _name;
 }
