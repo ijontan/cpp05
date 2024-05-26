@@ -35,10 +35,8 @@ Form &Form::operator=(Form &other)
 
 void Form::beSigned(Bureaucrat &signer)
 {
-	lastSigned = &signer;
 	if (signer.getGrade() <= gradeToSign)
 		isSigned = true;
-	signer.signForm(*this);
 }
 
 std::string Form::getName()

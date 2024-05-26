@@ -11,7 +11,6 @@ private:
 	const std::string name;
 	const int gradeToSign;
 	bool isSigned;
-	Bureaucrat *lastSigned;
 
 public:
 	class GradeTooHighException : public std::exception

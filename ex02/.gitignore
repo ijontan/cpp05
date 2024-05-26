@@ -4,3 +4,4 @@ SpecialForm
 *.o
 *.out
 *.DSYM
+*_shrubbery

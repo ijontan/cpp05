@@ -3,15 +3,15 @@
 #include <iostream>
 #include <string>
 
-Bureaucrat::Bureaucrat() : name("Bureaucrat"), grade(150)
+Bureaucrat::Bureaucrat() : _name("Bureaucrat"), _grade(150)
 {
 }
 
-Bureaucrat::Bureaucrat(std::string newName) : name(newName), grade(150)
+Bureaucrat::Bureaucrat(std::string newName) : _name(newName), _grade(150)
 {
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(150)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(150)
 {
 	(void)other;
 }
@@ -28,37 +28,46 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 std::string Bureaucrat::getName() const
 {
-	return name;
+	return _name;
 }
 
 int Bureaucrat::getGrade() const
 {
-	return grade;
+	return _grade;
+}
+
+void Bureaucrat::setGrade(int grade)
+{
+	if (_grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	if (_grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	_grade = grade;
 }
 
 void Bureaucrat::increment()
 {
-	if (grade == 1)
+	if (_grade == 1)
 		throw Bureaucrat::GradeTooHighException();
-	grade--;
+	_grade--;
 }
 
 void Bureaucrat::decrement()
 {
-	if (grade == 150)
+	if (_grade == 150)
 		throw Bureaucrat::GradeTooLowException();
-	grade++;
+	_grade++;
 }
 
 void Bureaucrat::signForm(Form &form)
 {
 	form.beSigned(*this);
 	if (form.getIsSigned())
-		std::cout << name << " signed " << form.getName() << std::endl;
+		std::cout << _name << " signed " << form.getName() << std::endl;
 	else
-		std::cout << name << " couldn't sign " << form.getName()
+		std::cout << _name << " couldn't sign " << form.getName()
 				  << " because bureaucrat grade too "
-				  << (form.getGradeToSign() > grade ? "low" : "high")
+				  << (form.getGradeToSign() < _grade ? "low" : "high")
 				  << std::endl;
 }
 

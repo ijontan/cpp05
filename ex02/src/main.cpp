@@ -91,6 +91,7 @@ int main()
 	}
 	std::cout << "\n\033[42;1mtest 3:\033[0m test robo 50%" << std::endl;
 	{
+		unsigned long number_of_test = 100000;
 		std::streambuf *bufftmp = std::cout.rdbuf();
 		std::ofstream file("file.tmp");
 		if (file.fail())
@@ -101,26 +102,24 @@ int main()
 		RobotomyRequestForm form("ok");
 		bureaucrat.setGrade(1);
 		bureaucrat.signForm(form);
-		for (int i = 0; i < 10000; i++)
-		{
+		for (unsigned long i = 0; i < number_of_test; i++)
 			bureaucrat.executeForm(form);
-		}
 		std::cout.rdbuf(bufftmp);
 		file.close();
 
 		std::ifstream file1("file.tmp");
 		std::string line;
-		int number_failed = 0;
-		int total = 0;
+		unsigned long number_failed = 0;
+		unsigned long total = 0;
 		float percent;
 		while (std::getline(file1, line))
 		{
 			if (line.find("failed") != std::string::npos)
-				number_failed += 1;
-			total += 1;
+				++number_failed;
+			++total;
 		}
 		percent = (float)number_failed / total;
-		std::cout << "percentages: " << percent << std::endl;
+		std::cout << "number of test: " << total << ", percentages: " << percent << std::endl;
 		file1.close();
 	}
 ending:

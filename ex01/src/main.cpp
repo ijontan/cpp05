@@ -3,37 +3,21 @@
 #include "Form.hpp"
 #include <iostream>
 
-int main(int argc, char *argv[])
+int main(void)
 {
-	(void)argc;
-	(void)argv;
-	Bureaucrat bureaucrat("jonny");
-	Form form("form1", 70);
-
-	std::cout << bureaucrat;
-
-	try
+	std::cout << "\033[42;1mTest 1:\033[0m exec unsigned" << std::endl;
 	{
-		bureaucrat.decrement();
-	}
-	catch (Bureaucrat::GradeTooLowException &e)
-	{
-		std::cout << e;
-	}
+		Bureaucrat bureaucrat("jonny");
+		Form form1("ok1", 100);
+		Form form2("ok2", 1);
+		Form form3("ok3", 50);
 
-	std::cout << bureaucrat;
-
-	try
-	{
-		for (int i = 0; i < 150; i++)
-			bureaucrat.increment();
+		bureaucrat.setGrade(25);
+		bureaucrat.signForm(form1);
+		bureaucrat.signForm(form2);
+		bureaucrat.signForm(form3);
+		bureaucrat.setGrade(1);
+		bureaucrat.signForm(form2);
 	}
-	catch (Bureaucrat::GradeTooHighException &e)
-	{
-		std::cout << e;
-	}
-
-	std::cout << bureaucrat;
-
 	return 0;
 }

@@ -68,7 +68,7 @@ void Bureaucrat::signForm(AForm &form)
 	else
 		std::cout << _name << " couldn't sign " << form.getName()
 				  << " because bureaucrat grade too "
-				  << (form.getGradeToSign() > _grade ? "low" : "high")
+				  << (form.getGradeToSign() < _grade ? "low" : "high")
 				  << std::endl;
 }
 
